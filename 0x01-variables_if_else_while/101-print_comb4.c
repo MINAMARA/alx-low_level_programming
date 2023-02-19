@@ -1,5 +1,5 @@
-#include <sdtio.h>
-#include <sdtlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 /**
  * main - main block
  * Description: a program that prints all possible
