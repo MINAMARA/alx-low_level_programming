@@ -44,8 +44,6 @@ int main(void)
 		}
 		c++;
 	}
-	d++;
-
 	putchar('\n');
 	return (0);
 }
