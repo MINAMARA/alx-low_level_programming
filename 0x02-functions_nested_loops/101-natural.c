@@ -7,7 +7,6 @@
  */
 
 int main(void)
-
 {
 	int i, z = 0;
 
@@ -17,8 +16,8 @@ int main(void)
 		{
 			z += i;
 		}
-		printf("%d\n", z);
-
-		return (0);
+		i++;
 	}
+	printf("%d\n", sum);
+	return (0);
 }
