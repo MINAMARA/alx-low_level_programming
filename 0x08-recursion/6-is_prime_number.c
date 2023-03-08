@@ -1,34 +1,39 @@
 #include "main.h"
-#include <stdio.h>
+#include <math.h>
 
-int _sqrt(int n, int i);
 
 /**
-  * _sqrt_recursion - Returns the natural square root of a number
-  * @n: number to calculate the natural square root
-  *
-  * Return: the natural square root
-  */
-int _sqrt_recursion(int n)
+ * is_divisible - Makes possible to evaluate from 1 to n
+ * @a: same number as a
+ * @b: number that iterates from 1 to n
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno.
+ */
+
+int is_divisible(int a, int b)
 {
-	return (_sqrt(n, 1));
+	if (a == b)
+		return (1);
+	else if (a % b == 0)
+		return (0);
+	return (is_divisible(a, b + 1));
 }
-
 /**
-  * _sqrt - Calculates natural square root
-  * @n: number to calculate the square root
-  * @i: iterate number
-  *
-  * Return: the natural square root
-  */
-int _sqrt(int n, int i)
+ * is_prime_number - checks if a number is prime
+ * @n: Number Integer
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int is_prime_number(int n)
 {
-	int sqrt = i * i;
-
-	if (sqrt > n)
-		return (-1);
-
-	if (sqrt == n)
-		return (i);
-	return (_sqrt(n, i + 1));
+	if (n <= 1)
+	{
+		return (0);
+	}
+	else
+	{
+		return (is_divisible(n, 2));
+	}
 }
