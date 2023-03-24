@@ -1,7 +1,6 @@
 #include "variadic_functions.h"
 #include <stdarg.h>
 #include <stdio.h>
-
 /**
  * print_all - Variadic function that can print any argument passed in
  * as long as it is a character, integer, float, or string
@@ -17,7 +16,6 @@ void print_all(const char * const format, ...)
 	char *separator = ", ";
 
 	va_start(argument_input, format);
-
 	while (format[i] != '\0' && format != NULL)
 	{
 		switch (format[i])
