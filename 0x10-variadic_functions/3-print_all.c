@@ -1,6 +1,7 @@
 #include "variadic_functions.h"
 #include <stdarg.h>
 #include <stdio.h>
+
 /**
  * print_all - Variadic function that can print any argument passed in
  * as long as it is a character, integer, float, or string
@@ -10,40 +11,41 @@
 void print_all(const char * const format, ...)
 {
 	int i = 0;
-	char *str, *sep = "";
-	va_list list;
+	va_list argument_input;
+	char *str = "(nil)";
+	char *sarray = NULL;
+	char *separator = ", ";
 
-	va_start(list, format);
+	va_start(argument_input, format);
 
-	if (format)
+	while (format[i] != '\0' && format != NULL)
 	{
-		while (format[i])
+		switch (format[i])
 		{
-			switch (format[i])
-			{
-				case 'c':
-					printf("%s%c", sep, va_arg(list, int));
-					break;
-				case 'i':
-					printf("%s%d", sep, va_arg(list, int));
-					break;
-				case 'f':
-					printf("%s%f", sep, va_arg(list, double));
-					break;
-				case 's':
-					str = va_arg(list, char *);
-					if (!str)
-						str = "(nil)";
-					printf("%s%s", sep, str);
-					break;
-				default:
-					i++;
-					continue;
-			}
-			sep = ",";
-			i++;
+			case 'c':
+				printf("%c", va_arg(argument_input, int));
+				break;
+			case 'i':
+				printf("%d", va_arg(argument_input, int));
+				break;
+			case 'f':
+				printf("%f", va_arg(argument_input, double));
+				break;
+			case 's':
+				sarray = va_arg(argument_input, char *);
+				if (sarray == NULL)
+					sarray = str;
+				printf("%s", sarray);
+				break;
+			default:
+				i++;
+				continue;
 		}
+		if ((format[i + 1] != '\0') && (format[i] == 'c' || format[i] == 'i' ||
+					format[i] == 'f' || format[i] == 's'))
+			printf("%s", separator);
+		i++;
 	}
 	printf("\n");
-	va_end(list);
+	va_end(argument_input);
 }
